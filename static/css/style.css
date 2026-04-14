@@ -568,7 +568,6 @@ a, button, [role="button"], input, select, textarea {
 }
 
 .steps::before {
-  content: '';
   position: absolute;
   top: 2rem;
   left: calc(16.67% + var(--space-12));
