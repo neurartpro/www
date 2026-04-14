@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
+  <title>{{ .Site.Title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo" aria-label="NeurArt">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M10 26 L18 10 L26 26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M12.5 21h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="18" cy="10" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="nav__brand">NeurArt</span>
+    </a>
+    <nav class="nav__links" aria-label="Основная навигация">
+      <a href="#about">О сервисе</a>
+      <a href="#process">Как это работает</a>
+      <a href="#gallery">Примеры</a>
+
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#booking" class="btn btn--outline btn--sm">Начать</a>
+    <button class="nav__burger" aria-label="Меню" aria-expanded="false" id="burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#about">О сервисе</a>
+    <a href="#process">Как это работает</a>
+    <a href="#gallery">Примеры</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#faq">FAQ</a>
+    <a href="#booking" class="btn btn--primary">Начать фотосессию</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__bg">
+    <img src="/images/hero-bg.jpg" alt="" aria-hidden="true" class="hero__img" loading="eager">
+    <div class="hero__overlay"></div>
+  </div>
+  <div class="hero__content container">
+    <p class="kicker">{{ .Params.hero.kicker }}</p>
+    <h1 class="hero__headline">{{ .Params.hero.headline }}</h1>
+    <p class="hero__sub">{{ .Params.hero.subline }}</p>
+    <div class="hero__ctas">
+      <a href="#booking" class="btn btn--primary btn--lg">{{ .Params.hero.cta_primary }}</a>
+      <a href="#gallery" class="btn btn--ghost btn--lg">{{ .Params.hero.cta_secondary }}</a>
+    </div>
+    <div class="hero__trust">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" fill="none"/></svg>Только 18+</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Данные защищены</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Результат за 30 мин</span>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="section-label">{{ .Params.about.label }}</div>
+    <div class="about__grid">
+      <div class="about__text">
+        <h2 class="section-headline">{{ .Params.about.headline }}</h2>
+        <p class="about__body">{{ .Params.about.text }}</p>
+      </div>
+      <div class="about__img-wrap">
+        <img src="/images/about-art.jpg" alt="Нейрофотосессия — пример работы" class="about__img" loading="lazy">
+        <div class="about__img-badge">AI-generated</div>
+      </div>
+    </div>
+    <div class="cards">
+      {{ range .Params.about.cards }}
+      <div class="card reveal">
+        <div class="card__icon">
+          {{ if eq .icon "shield" }}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          {{ else if eq .icon "sparkle" }}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          {{ else if eq .icon "bolt" }}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          {{ end }}
+        </div>
+        <h3 class="card__title">{{ .title }}</h3>
+        <p class="card__text">{{ .text }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process section section--dark" id="process">
+  <div class="container">
+    <div class="section-label">{{ .Params.process.label }}</div>
+    <h2 class="section-headline">{{ .Params.process.headline }}</h2>
+    <div class="steps">
+      {{ range .Params.process.steps }}
+      <div class="step reveal">
+        <div class="step__num">{{ .number }}</div>
+        <div class="step__body">
+          <h3 class="step__title">{{ .title }}</h3>
+          <p class="step__text">{{ .text }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-label">{{ .Params.gallery.label }}</div>
+    <h2 class="section-headline">{{ .Params.gallery.headline }}</h2>
+    <p class="gallery__disclaimer">⚠ {{ .Params.gallery.disclaimer }}</p>
+    <div class="gallery__styles">
+      {{ range .Params.gallery.styles }}
+      <div class="style-pill">
+        <span class="style-pill__name">{{ .name }}</span>
+        <span class="style-pill__desc">{{ .desc }}</span>
+      </div>
+      {{ end }}
+    </div>
+    <div class="gallery__grid">
+      <div class="gallery__item gallery__item--tall reveal">
+        <img src="/images/gal-1.jpg" alt="Нейрофото — boudoir образ" loading="lazy">
+        <div class="gallery__item-label">Boudoir</div>
+      </div>
+      <div class="gallery__item reveal">
+        <img src="/images/gal-2.jpg" alt="Нейрофото — арт-ню" loading="lazy">
+        <div class="gallery__item-label">Арт-ню</div>
+      </div>
+      <div class="gallery__item reveal">
+        <img src="/images/gal-3.jpg" alt="Нейрофото — фэшн" loading="lazy">
+        <div class="gallery__item-label">Фэшн</div>
+      </div>
+      <div class="gallery__item gallery__item--wide reveal">
+        <img src="/images/gal-4.jpg" alt="Нейрофото — фэнтези" loading="lazy">
+        <div class="gallery__item-label">Фэнтези</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing section section--dark" id="pricing">
+  <div class="container">
+    <div class="section-label">{{ .Params.pricing.label }}</div>
+    <h2 class="section-headline">{{ .Params.pricing.headline }}</h2>
+    <div class="plans">
+      {{ range .Params.pricing.plans }}
+      <div class="plan reveal{{ if .highlight }} plan--highlight{{ end }}">
+        {{ if .badge }}<div class="plan__badge">{{ .badge }}</div>{{ end }}
+        <div class="plan__name">{{ .name }}</div>
+        <div class="plan__price">
+          <span class="plan__amount">{{ .price }}</span>
+          <span class="plan__currency">₽</span>
+          <span class="plan__period"> / {{ .period }}</span>
+        </div>
+        <ul class="plan__features" role="list">
+          {{ range .features }}
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            {{ . }}
+          </li>
+          {{ end }}
+        </ul>
+        <a href="#booking" class="btn{{ if .highlight }} btn--primary{{ else }} btn--outline{{ end }} btn--full">{{ .cta }}</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-label">{{ .Params.testimonials.label }}</div>
+    <h2 class="section-headline">{{ .Params.testimonials.headline }}</h2>
+    <div class="reviews">
+      {{ range .Params.testimonials.items }}
+      <div class="review reveal">
+        <div class="review__stars" aria-label="{{ .stars }} из 5 звёзд">
+          {{ range seq .stars }}★{{ end }}
+        </div>
+        <p class="review__text">{{ .text }}</p>
+        <div class="review__author">
+          <span class="review__name">{{ .name }}</span>
+          <span class="review__role">{{ .role }}</span>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section section--dark" id="faq">
+  <div class="container container--narrow">
+    <div class="section-label">{{ .Params.faq.label }}</div>
+    <h2 class="section-headline">{{ .Params.faq.headline }}</h2>
+    <div class="accordion">
+      {{ range $i, $item := .Params.faq.items }}
+      <div class="accordion__item">
+        <button class="accordion__q" aria-expanded="false" aria-controls="faq-{{ $i }}">
+          <span>{{ .q }}</span>
+          <svg class="accordion__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion__a" id="faq-{{ $i }}" role="region" hidden>
+          <p>{{ .a }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING / CTA -->
+<section class="booking section" id="booking">
+  <div class="booking__bg">
+    <img src="/images/cta-bg.jpg" alt="" aria-hidden="true" loading="lazy">
+    <div class="booking__overlay"></div>
+  </div>
+  <div class="container container--narrow booking__content">
+    <h2 class="booking__headline">{{ .Params.cta.headline }}</h2>
+    <p class="booking__sub">{{ .Params.cta.subline }}</p>
+    <form class="booking__form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" placeholder="Как тебя зовут?" required>
+        </div>
+        <div class="form-group">
+          <label for="contact">Telegram или email</label>
+          <input type="text" id="contact" name="contact" placeholder="@username или email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="style">Желаемый стиль</label>
+        <select id="style" name="style">
+          <option value="">Выбери образ</option>
+          <option>Boudoir — нежно и чувственно</option>
+          <option>Арт-ню — художественный</option>
+          <option>Фэшн — высокая мода</option>
+          <option>Фэнтези — магия и образы</option>
+          <option>Свой вариант</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="promo">Промокод</label>
+        <input type="text" id="promo" name="promo" placeholder="DEBUT — первая сессия бесплатно">
+      </div>
+      <button type="submit" class="btn btn--primary btn--lg btn--full">{{ .Params.cta.button }}</button>
+      <p class="form-note">Нажимая кнопку, ты подтверждаешь, что тебе исполнилось 18 лет, и соглашаешься с <a href="#">условиями использования</a></p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="nav__logo" aria-label="NeurArt">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M10 26 L18 10 L26 26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M12.5 21h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="18" cy="10" r="1.5" fill="currentColor"/>
+        </svg>
+        <span class="nav__brand">NeurArt</span>
+      </a>
+      <p class="footer__tagline">AI-фотосессии нового поколения</p>
+    </div>
+    <div class="footer__links">
+      <div class="footer__col">
+        <span class="footer__col-title">Сервис</span>
+        <a href="#about">О нас</a>
+        <a href="#process">Как это работает</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-title">Поддержка</span>
+        <a href="#faq">FAQ</a>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Условия использования</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__col-title">Контакты</span>
+        <a href="https://t.me/neurart_support">Telegram</a>
+        <a href="mailto:hello@neurart.ai">hello@neurart.ai</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <p>© 2026 NeurArt. Только для совершеннолетних (18+). Все изображения созданы нейросетью.</p>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

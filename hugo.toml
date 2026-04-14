@@ -1,0 +1,10 @@
+baseURL = "/"
+relativeURLs = true
+canonicalize = true
+languageCode = "ru-ru"
+title = "NeurArt — Нейрофотосессии"
+defaultContentLanguage = "ru"
+
+[params]
+  description = "Создай образ своей мечты с помощью нейросетей. Откровенные арт-фото без студии и фотографа."
+  tagline = "Ваша нейрофотосессия"
